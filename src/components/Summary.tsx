@@ -11,10 +11,10 @@ interface KPI {
 
 const kpis: KPI[] = [
   { value: '345', numericValue: 345, suffix: '', labelEn: 'Interventions', labelPt: 'Intervenções', detail: 'Jan 25 – Feb 26' },
-  { value: '54', numericValue: 54, suffix: '', labelEn: 'Vehicles Serviced', labelPt: 'Viaturas Atendidas', detail: 'Unique fleet units' },
-  { value: '97.4', numericValue: 97.4, suffix: '%', labelEn: 'Approval Rate', labelPt: 'Taxa Aprovação', detail: '333 / 342' },
+  { value: '57', numericValue: 57, suffix: '', labelEn: 'Vehicles Serviced', labelPt: 'Viaturas Atendidas', detail: 'Unique fleet units' },
+  { value: '3', numericValue: 3, suffix: '', labelEn: 'Service Units', labelPt: 'Unidades de Serviço', detail: 'Icolo · Lobito · Lubango' },
   { value: '2.8', numericValue: 2.8, suffix: 'd', labelEn: 'Avg. Working Days', labelPt: 'Média Dias Úteis', detail: '954 total (excl. weekends)' },
-  { value: '0.9', numericValue: 0.9, suffix: 'd', labelEn: 'Estimate Approval', labelPt: 'Aprovação Estimativa', detail: '136 estimates' },
+  { value: '6.1', numericValue: 6.1, suffix: '', labelEn: 'Avg. Visits/Vehicle', labelPt: 'Média Visitas/Viatura', detail: '345 ÷ 57' },
   { value: '20.9', numericValue: 20.9, suffix: '%', labelEn: 'Same-Day', labelPt: 'Mesmo Dia', detail: '72 / 345' },
 ];
 
@@ -63,8 +63,8 @@ export function Summary({ lang }: { lang: 'en' | 'pt' }) {
       </h2>
       <p className="font-light text-sm text-dark-gray max-w-xl mb-10">
         {lang === 'en'
-          ? '345 interventions across 54 vehicles, delivered through our integrated network. Working days calculated excluding weekends and Angola public holidays.'
-          : '345 intervenções em 54 viaturas, através da nossa rede integrada. Dias úteis calculados excluindo fins-de-semana e feriados angolanos.'}
+          ? '345 interventions across 57 vehicles, delivered through our integrated network. Working days calculated excluding weekends and Angola public holidays.'
+          : '345 intervenções em 57 viaturas, através da nossa rede integrada. Dias úteis calculados excluindo fins-de-semana e feriados angolanos.'}
       </p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {kpis.map((kpi, i) => (
