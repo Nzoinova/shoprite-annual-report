@@ -14,7 +14,7 @@ interface Metric {
 const metrics: Metric[] = [
   { labelEn: 'Monthly Average', labelPt: 'Média Mensal', v2024: '12.8', v2025: '24.6', change: '+92%', direction: 'up', positive: true },
   { labelEn: 'Approval Rate', labelPt: 'Taxa Aprovação', v2024: '95.0%', v2025: '97.4%', change: '+2.4pp', direction: 'up', positive: true },
-  { labelEn: 'Avg Immobilization', labelPt: 'Imobilização Média', v2024: '4.2d', v2025: '3.7d', change: '-12%', direction: 'down', positive: true },
+  { labelEn: 'Avg Working Days', labelPt: 'Média Dias Úteis', v2024: '3.1d', v2025: '2.8d', change: '-10%', direction: 'down', positive: true },
   { labelEn: 'Same-Day Completions', labelPt: 'Concluídos Mesmo Dia', v2024: '17.0%', v2025: '20.9%', change: '+3.9pp', direction: 'up', positive: true },
   { labelEn: 'Estimate Approval', labelPt: 'Aprovação Estimativa', v2024: '1.2d', v2025: '0.9d', change: '-25%', direction: 'down', positive: true },
 ];
