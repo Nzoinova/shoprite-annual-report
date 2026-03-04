@@ -5,6 +5,7 @@ import { Timeline } from './components/Timeline';
 import { Network } from './components/Network';
 import { ServiceAnalysis } from './components/ServiceAnalysis';
 import { TopVehicles } from './components/TopVehicles';
+import { FleetInsights } from './components/FleetInsights';
 import { History } from './components/History';
 import { YoY } from './components/YoY';
 import { Commitments } from './components/Commitments';
@@ -37,7 +38,7 @@ export default function App() {
 
   const sections = [
     'sec-cover', 'sec-summary', 'sec-timeline', 'sec-units',
-    'sec-services', 'sec-top10', 'sec-history', 'sec-yoy', 'sec-commitments'
+    'sec-services', 'sec-top10', 'sec-insights', 'sec-history', 'sec-yoy', 'sec-commitments'
   ];
 
   useEffect(() => {
@@ -101,6 +102,7 @@ export default function App() {
       <Network lang={lang} />
       <ServiceAnalysis lang={lang} />
       <TopVehicles lang={lang} />
+      <FleetInsights lang={lang} />
       <History lang={lang} />
       <YoY lang={lang} />
       <Commitments lang={lang} />
