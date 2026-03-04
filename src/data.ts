@@ -94,7 +94,6 @@ export const SERVICE_TRANSLATIONS: Record<string, string> = {
   "subtituição da valvula do veb ": "VEB valve replacement",
 };
 
-
 export const VEHICLES: Record<string, {mod:string; n:number; ad:number; awd:number; twd:number; e:{d:string; s:string; u:string; i:number; wd:number}[]}> = {
   "KEI0742": {"mod":"FMX 440","n":5,"ad":1.2,"awd":1.2,"twd":6,"e":[
     {"d":"2025-03-24","s":"Revisão básica","u":"Icolo e Bengo","i":1,"wd":1},
@@ -228,18 +227,13 @@ export const VEHICLES: Record<string, {mod:string; n:number; ad:number; awd:numb
     {"d":"2025-10-08","s":"RADIADOR SUBSTITUIÇÃO","u":"Icolo e Bengo","i":2,"wd":2},
     {"d":"2026-01-12","s":"Revisão básica","u":"Lobito","i":0,"wd":0}
   ]},
-  "KEI0782": {"mod":"FMX 440","n":6,"ad":3.5,"awd":3.0,"twd":18,"e":[
+  "KEI0782": {"mod":"FMX 440","n":6,"ad":3.5,"awd":2.2,"twd":13,"e":[
     {"d":"2025-03-13","s":"Revisão básica","u":"Icolo e Bengo","i":2,"wd":1},
     {"d":"2025-04-17","s":"DIAGNÓSTICO DE AVARIA NA CAIXA: VIATURA NÃO ENGRENA MUDANÇA","u":"Icolo e Bengo","i":5,"wd":2},
     {"d":"2025-05-23","s":"Serviços de calçar travões ","u":"Icolo e Bengo","i":5,"wd":3},
     {"d":"2025-06-24","s":"Diagnóstico","u":"Icolo e Bengo","i":2,"wd":2},
     {"d":"2025-08-28","s":"Verificar casquilhos de mola e fuga no diferencial","u":"Icolo e Bengo","i":5,"wd":3},
-    {"d":"2025-11-17","s":"Revisão básica","u":"Icolo e Bengo","i":2,"wd":2},
-    {"d":"2025-01-13","s":"Substituição de Baterias","u":"Icolo e Bengo","i":0,"wd":0},
-    {"d":"2025-03-21","s":"Serviço de aplicar parafuso batente de mola lado esquerdo.","u":"Icolo e Bengo","i":3,"wd":1},
-    {"d":"2025-04-28","s":"Revisão básica","u":"Icolo e Bengo","i":2,"wd":2},
-    {"d":"2025-10-15","s":"Revisão básica","u":"Icolo e Bengo","i":1,"wd":1},
-    {"d":"2025-10-15","s":"Revisão básica","u":"Icolo e Bengo","i":1,"wd":1}
+    {"d":"2025-11-17","s":"Revisão básica","u":"Icolo e Bengo","i":2,"wd":2}
   ]},
   "KEI0783": {"mod":"FMX 440","n":2,"ad":1.0,"awd":1.0,"twd":2,"e":[
     {"d":"2025-04-24","s":"Revisão básica","u":"Icolo e Bengo","i":1,"wd":1},
@@ -253,19 +247,13 @@ export const VEHICLES: Record<string, {mod:string; n:number; ad:number; awd:numb
     {"d":"2025-10-29","s":"Revisão completa","u":"Lobito","i":5,"wd":3},
     {"d":"2025-11-12","s":"Substituir as boias da suspensão traseira","u":"Icolo e Bengo","i":40,"wd":28}
   ]},
-  "KEI0806": {"mod":"FH 520","n":6,"ad":3.7,"awd":4.0,"twd":24,"e":[
+  "KEI0806": {"mod":"FH 520","n":6,"ad":3.7,"awd":2.7,"twd":16,"e":[
     {"d":"2025-02-17","s":"Revisão básica","u":"Lobito","i":1,"wd":1},
     {"d":"2025-05-12","s":"Revisão básica","u":"Lobito","i":4,"wd":4},
     {"d":"2025-06-19","s":"sensor do abs substituição,trás","u":"Lobito","i":6,"wd":4},
     {"d":"2025-08-18","s":"Revisão completa","u":"Lobito","i":0,"wd":0},
     {"d":"2025-09-04","s":"Substituir amortecedores de trás da cabina","u":"Icolo e Bengo","i":5,"wd":3},
-    {"d":"2025-11-13","s":"Revisão básica","u":"Icolo e Bengo","i":6,"wd":4},
-    {"d":"2025-03-10","s":"Revisão básica substituição da ventoinha e reservatório de á","u":"Icolo e Bengo","i":2,"wd":2},
-    {"d":"2025-05-28","s":"Revisão completa","u":"Icolo e Bengo","i":6,"wd":4},
-    {"d":"2025-07-10","s":"Substituição de Baterias","u":"Icolo e Bengo","i":0,"wd":0},
-    {"d":"2025-09-04","s":"Revisão básica","u":"Icolo e Bengo","i":1,"wd":1},
-    {"d":"2026-01-14","s":"Diagnóstico","u":"Icolo e Bengo","i":0,"wd":0},
-    {"d":"2026-02-19","s":"Revisão completa","u":"Icolo e Bengo","i":1,"wd":1}
+    {"d":"2025-11-13","s":"Revisão básica","u":"Icolo e Bengo","i":6,"wd":4}
   ]},
   "KEI0809": {"mod":"FH 520","n":9,"ad":3.3,"awd":2.7,"twd":24,"e":[
     {"d":"2025-01-28","s":"Revisão completa","u":"Lobito","i":3,"wd":3},
@@ -463,9 +451,8 @@ export const VEHICLES: Record<string, {mod:string; n:number; ad:number; awd:numb
   "KEI0906": {"mod":"FMX 440","n":1,"ad":1.0,"awd":1.0,"twd":1,"e":[
     {"d":"2025-07-22","s":"Revisão completa","u":"Icolo e Bengo","i":1,"wd":1}
   ]},
-  "KEI0907": {"mod":"FMX 440","n":1,"ad":1.0,"awd":10.0,"twd":10,"e":[
-    {"d":"2025-01-02","s":"Revisão completa","u":"Icolo e Bengo","i":1,"wd":1},
-    {"d":"2025-02-12","s":"Revisão básica substituição da bomba de água e turbocompress","u":"Icolo e Bengo","i":13,"wd":9}
+  "KEI0907": {"mod":"FMX 440","n":1,"ad":1.0,"awd":1.0,"twd":1,"e":[
+    {"d":"2025-01-02","s":"Revisão completa","u":"Icolo e Bengo","i":1,"wd":1}
   ]},
   "KEI0908": {"mod":"FMX 440","n":9,"ad":6.1,"awd":4.2,"twd":38,"e":[
     {"d":"2025-01-28","s":"Reparação da Instalação elétrica/Link de dados","u":"Lobito","i":8,"wd":5},
@@ -549,6 +536,24 @@ export const VEHICLES: Record<string, {mod:string; n:number; ad:number; awd:numb
     {"d":"2025-12-01","s":"Revisão completa","u":"Icolo e Bengo","i":2,"wd":2},
     {"d":"2026-02-26","s":"Revisão básica","u":"Icolo e Bengo","i":0,"wd":0}
   ]},
+  "LD9335HL": {"mod":"FMX 440","n":5,"ad":1.4,"awd":1.0,"twd":5,"e":[
+    {"d":"2025-01-13","s":"Substituição de Baterias","u":"Icolo e Bengo","i":0,"wd":0},
+    {"d":"2025-03-21","s":"Serviço de aplicar parafuso batente de mola lado esquerdo","u":"Icolo e Bengo","i":3,"wd":1},
+    {"d":"2025-04-28","s":"Revisão básica","u":"Icolo e Bengo","i":2,"wd":2},
+    {"d":"2025-10-15","s":"Revisão básica","u":"Icolo e Bengo","i":1,"wd":1},
+    {"d":"2025-10-15","s":"Revisão básica","u":"Icolo e Bengo","i":1,"wd":1}
+  ]},
+  "LD9338HL": {"mod":"FMX 440","n":6,"ad":2.0,"awd":1.6,"twd":8,"e":[
+    {"d":"2025-03-10","s":"Revisão básica substituição da ventoinha e reservatório","u":"Icolo e Bengo","i":2,"wd":2},
+    {"d":"2025-05-28","s":"Revisão completa","u":"Icolo e Bengo","i":6,"wd":4},
+    {"d":"2025-07-10","s":"Substituição de Baterias","u":"Icolo e Bengo","i":0,"wd":0},
+    {"d":"2025-09-04","s":"Revisão básica","u":"Icolo e Bengo","i":1,"wd":1},
+    {"d":"2026-01-14","s":"Diagnóstico","u":"Icolo e Bengo","i":-1,"wd":-1},
+    {"d":"2026-02-19","s":"Revisão completa","u":"Icolo e Bengo","i":1,"wd":1}
+  ]},
+  "LDP8008": {"mod":"420","n":1,"ad":13.0,"awd":9.0,"twd":9,"e":[
+    {"d":"2025-02-12","s":"Revisão básica substituição da bomba de água e turbocompressor","u":"Icolo e Bengo","i":13,"wd":9}
+  ]},
 };
 
 export const FLEET_AGE: Record<string, {vin:string; del:string; yr:number}> = {
@@ -605,6 +610,9 @@ export const FLEET_AGE: Record<string, {vin:string; del:string; yr:number}> = {
   "KEI0941": {"vin":"YV2XS02D8JM948882","del":"2018-04-21","yr":2018},
   "KEI0942": {"vin":"YV2XS02D0JM950190","del":"2018-06-05","yr":2018},
   "KEI0943": {"vin":"YV2XS02D4JM950225","del":"2018-06-22","yr":2018},
+  "LD9335HL": {"vin":"unknown","del":"unknown","yr":2016},
+  "LD9338HL": {"vin":"unknown","del":"unknown","yr":2016},
+  "LDP8008": {"vin":"unknown","del":"unknown","yr":2001},
 };
 
 // Odometer snapshot from fleet dashboard (~Jun 2025). NOT current values.
@@ -631,29 +639,8 @@ export const ODOMETER_SNAPSHOT: Record<string, number> = {
 };
 export const ODOMETER_DATE = '2025-06';
 
-export const PROBLEM_CATEGORIES = [
-  {id:"maint",en:"Maintenance / Diagnostic",pt:"Manutenção / Diagnóstico",count:167,days:487,avg:2.9,pri:"routine"},
-  {id:"elec",en:"Electrical System",pt:"Sistema Eléctrico",count:36,days:67,avg:1.9,pri:"medium"},
-  {id:"cool",en:"Cooling System",pt:"Sistema de Arrefecimento",count:24,days:145,avg:6.0,pri:"medium"},
-  {id:"brake",en:"Brake System",pt:"Sistema de Travões",count:19,days:46,avg:2.4,pri:"high"},
-  {id:"pneum",en:"Pneumatic / Air",pt:"Pneumático / Ar",count:11,days:223,avg:20.3,pri:"critical"},
-  {id:"clutch",en:"Clutch",pt:"Embraiagem",count:10,days:113,avg:11.3,pri:"high"},
-  {id:"engine",en:"Engine",pt:"Motor",count:8,days:84,avg:10.5,pri:"high"},
-  {id:"susp",en:"Suspension",pt:"Suspensão",count:8,days:18,avg:2.3,pri:"medium"},
-  {id:"trans",en:"Transmission",pt:"Transmissão",count:8,days:49,avg:6.1,pri:"high"},
-  {id:"chassis",en:"Chassis / Body",pt:"Chassis / Carroçaria",count:5,days:8,avg:1.6,pri:"low"},
-  {id:"fuel",en:"Fuel System",pt:"Sistema de Combustível",count:3,days:10,avg:3.3,pri:"medium"},
-  {id:"exhaust",en:"Exhaust / Turbo",pt:"Escape / Turbo",count:3,days:6,avg:2.0,pri:"medium"},
-];
-
 export const UNIT_EFFICIENCY = [
-  {id:"ib",en:"Icolo e Bengo",pt:"Icolo e Bengo",interventions:248,avgCalDays:3.4,avgWorkDays:2.5},
+  {id:"ib",en:"Icolo e Bengo",pt:"Icolo e Bengo",interventions:248,avgCalDays:3.4,avgWorkDays:2.6},
   {id:"lo",en:"Lobito",pt:"Lobito",interventions:90,avgCalDays:4.3,avgWorkDays:3.2},
-  {id:"lu",en:"Lubango",pt:"Lubango",interventions:7,avgCalDays:6.6,avgWorkDays:4.8},
-];
-
-export const DELAY_ROOT_CAUSES = [
-  {en:"Parts Import",pt:"Importação de Peças",pct:60},
-  {en:"Budget Approvals",pt:"Aprovações Orçamentais",pct:20},
-  {en:"Warranty Procedures",pt:"Procedimentos de Garantia",pct:20},
+  {id:"lu",en:"Lubango",pt:"Lubango",interventions:7,avgCalDays:6.6,avgWorkDays:4.7},
 ];
