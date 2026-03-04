@@ -2,7 +2,7 @@ import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 const unitData = [
-  { name: 'Icolo e Bengo', value: 248, vehicles: 53, color: '#415A67' },
+  { name: 'Icolo e Bengo', value: 248, vehicles: 50, color: '#415A67' },
   { name: 'Lobito', value: 90, vehicles: 24, color: '#9CC7DE' },
   { name: 'Lubango', value: 7, vehicles: 6, color: '#D6D6D6' },
 ];
@@ -69,11 +69,6 @@ export function Network({ lang }: { lang: 'en' | 'pt' }) {
         <div className="grid md:grid-cols-2 gap-12">
           <DonutChart data={unitData} title={lang === 'en' ? 'By Service Unit' : 'Por Unidade'} />
           <DonutChart data={modelData} title={lang === 'en' ? 'By Vehicle Model' : 'Por Modelo'} />
-        </div>
-        <div className="mt-8 flex gap-3 h-6 rounded overflow-hidden max-w-2xl">
-          {unitData.map((d, i) => (
-            <div key={i} style={{ flex: d.value, background: d.color }} className="transition-all duration-500 hover:opacity-80" title={d.name + ': ' + d.value} />
-          ))}
         </div>
       </div>
     </section>
