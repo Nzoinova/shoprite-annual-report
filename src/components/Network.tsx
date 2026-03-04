@@ -2,7 +2,7 @@ import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 const unitData = [
-  { name: 'Icolo e Bengo', value: 248, vehicles: 50, color: '#415A67' },
+  { name: 'Icolo e Bengo', value: 248, vehicles: 53, color: '#415A67' },
   { name: 'Lobito', value: 90, vehicles: 24, color: '#9CC7DE' },
   { name: 'Lubango', value: 7, vehicles: 6, color: '#D6D6D6' },
 ];
