@@ -9,16 +9,34 @@ import { History } from './components/History';
 import { YoY } from './components/YoY';
 import { Commitments } from './components/Commitments';
 import { Methodology, Footer } from './components/Footer';
-import { useFadeIn } from './components/FadeIn';
 
 export default function App() {
   const [lang, setLang] = useState<'en' | 'pt'>('pt');
   const [activeSection, setActiveSection] = useState(0);
-  
-  useFadeIn();
+
+  // Fade-in observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    // Observe after a short delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+    }, 100);
+
+    return () => { clearTimeout(timer); observer.disconnect(); };
+  }, []);
 
   const sections = [
-    'sec-cover', 'sec-summary', 'sec-timeline', 'sec-units', 
+    'sec-cover', 'sec-summary', 'sec-timeline', 'sec-units',
     'sec-services', 'sec-top10', 'sec-history', 'sec-yoy', 'sec-commitments'
   ];
 
@@ -33,10 +51,9 @@ export default function App() {
       });
       setActiveSection(active);
     };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections]);
+  }, []);
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -45,15 +62,19 @@ export default function App() {
   return (
     <div className="font-sans font-light text-off-black bg-white leading-relaxed antialiased">
       {/* Language Toggle */}
-      <div className="fixed top-5 right-5 z-[1000] flex border border-med-dark-gray rounded overflow-hidden bg-white/10 backdrop-blur-sm">
-        <button 
-          className={`px-3.5 py-1.5 font-semibold text-xs tracking-wide transition-colors ${lang === 'en' ? 'bg-teal text-white' : 'bg-transparent text-med-light-gray hover:text-white'}`}
+      <div className="fixed top-5 right-5 z-[1000] flex border border-dark-gray/50 rounded-sm overflow-hidden bg-black/60 backdrop-blur-md shadow-lg">
+        <button
+          className={`px-3.5 py-1.5 font-semibold text-[11px] tracking-wider transition-all duration-300 ${
+            lang === 'en' ? 'bg-teal text-white' : 'bg-transparent text-med-light-gray hover:text-white'
+          }`}
           onClick={() => setLang('en')}
         >
           EN
         </button>
-        <button 
-          className={`px-3.5 py-1.5 font-semibold text-xs tracking-wide transition-colors ${lang === 'pt' ? 'bg-teal text-white' : 'bg-transparent text-med-light-gray hover:text-white'}`}
+        <button
+          className={`px-3.5 py-1.5 font-semibold text-[11px] tracking-wider transition-all duration-300 ${
+            lang === 'pt' ? 'bg-teal text-white' : 'bg-transparent text-med-light-gray hover:text-white'
+          }`}
           onClick={() => setLang('pt')}
         >
           PT
@@ -61,15 +82,18 @@ export default function App() {
       </div>
 
       {/* Nav Dots */}
-      <div className="fixed right-5 top-1/2 -translate-y-1/2 z-[999] flex flex-col gap-2.5 hidden md:flex">
+      <nav className="fixed right-5 top-1/2 -translate-y-1/2 z-[999] hidden md:flex flex-col gap-2.5">
         {sections.map((id, i) => (
-          <div 
+          <button
             key={id}
-            className={`w-2 h-2 rounded-full cursor-pointer transition-all duration-300 ${activeSection === i ? 'bg-teal scale-150' : 'bg-med-light-gray hover:bg-dark-gray'}`}
+            className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-150 ${
+              activeSection === i ? 'bg-teal scale-150 shadow-md' : 'bg-med-light-gray/50 hover:bg-dark-gray'
+            }`}
             onClick={() => scrollToSection(id)}
+            aria-label={`Go to section ${i + 1}`}
           />
         ))}
-      </div>
+      </nav>
 
       <Cover lang={lang} />
       <Summary lang={lang} />
@@ -85,4 +109,3 @@ export default function App() {
     </div>
   );
 }
-
