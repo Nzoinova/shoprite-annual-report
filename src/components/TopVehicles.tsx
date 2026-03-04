@@ -5,7 +5,7 @@ import { Trophy, Clock, Wrench } from 'lucide-react';
 export function TopVehicles({ lang }: { lang: 'en' | 'pt' }) {
   const sorted = Object.entries(VEHICLES)
     .map(([plate, info]) => ({ plate, ...info }))
-    .sort((a, b) => b.n - a.n || a.ad - b.ad)
+    .sort((a, b) => b.n - a.n || a.awd - b.awd)
     .slice(0, 10);
 
   const maxEntries = sorted[0]?.n || 1;
@@ -56,8 +56,8 @@ export function TopVehicles({ lang }: { lang: 'en' | 'pt' }) {
                     <span className="font-extrabold text-xl tabular-nums text-teal">{v.n}</span>
                   </td>
                   <td className="py-3 text-center">
-                    <span className={`font-semibold text-sm tabular-nums ${v.ad <= 3 ? 'text-teal' : v.ad >= 6 ? 'text-dark-gray' : 'text-off-black'}`}>
-                      {v.ad}d
+                    <span className={`font-semibold text-sm tabular-nums ${v.awd <= 3 ? 'text-teal' : v.awd >= 6 ? 'text-dark-gray' : 'text-off-black'}`}>
+                      {v.awd}d
                     </span>
                   </td>
                   <td className="py-3 hidden md:table-cell">
@@ -82,7 +82,7 @@ export function TopVehicles({ lang }: { lang: 'en' | 'pt' }) {
           </div>
           <div>
             <Clock size={14} className="inline mr-1 text-teal" />
-            {lang === 'en' ? 'Fastest avg' : 'Mais rápido'}: <b className="text-off-black">{sorted.reduce((best, v) => v.ad < best.ad ? v : best).plate}</b> ({sorted.reduce((best, v) => v.ad < best.ad ? v : best).ad}d)
+            {lang === 'en' ? 'Fastest avg' : 'Mais rápido'}: <b className="text-off-black">{sorted.reduce((best, v) => v.awd < best.awd ? v : best).plate}</b> ({sorted.reduce((best, v) => v.awd < best.awd ? v : best).awd}d)
           </div>
         </div>
       </div>
