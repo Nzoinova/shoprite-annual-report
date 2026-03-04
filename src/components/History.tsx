@@ -155,8 +155,8 @@ export function History({ lang }: { lang: 'en' | 'pt' }) {
                         <span className="truncate">{entry.u}</span>
                       </div>
                       <div className="tabular-nums">
-                        <span className={`font-semibold ${entry.wd === 0 ? 'text-teal' : entry.wd > 10 ? 'text-dark-gray' : 'text-off-black'}`}>
-                          {entry.wd}d
+                        <span className={`font-semibold ${entry.wd < 0 ? 'text-med-dark-gray italic' : entry.wd === 0 ? 'text-teal' : entry.wd > 10 ? 'text-dark-gray' : 'text-off-black'}`}>
+                          {entry.wd < 0 ? '—' : `${entry.wd}d`}
                         </span>
                       </div>
                     </div>
@@ -167,7 +167,7 @@ export function History({ lang }: { lang: 'en' | 'pt' }) {
                       {info.n} {lang === 'en' ? 'total interventions' : 'intervenções no total'}
                     </span>
                     <span className="text-dark-gray">
-                      {lang === 'en' ? 'Total working days' : 'Total dias úteis'}: <b>{info.e.reduce((s: number, e: any) => s + e.wd, 0)}d</b>
+                      {lang === 'en' ? 'Total working days' : 'Total dias úteis'}: <b>{info.e.reduce((s: number, e: any) => s + Math.max(0, e.wd), 0)}d</b>
                     </span>
                   </div>
                 </div>
