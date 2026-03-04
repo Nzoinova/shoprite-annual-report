@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", Arial, sans-serif;
+  
+  --color-black: #000000;
+  --color-off-black: #2B2B2B;
+  --color-dark-gray: #575757;
+  --color-med-dark-gray: #808080;
+  --color-med-light-gray: #ABABAB;
+  --color-light-gray: #D6D6D6;
+  --color-off-white: #F2F2F2;
+  --color-white: #FFFFFF;
+  --color-teal: #415A67;
+  --color-sky: #9CC7DE;
+  --color-teal-10: rgba(65,90,103,0.1);
+  --color-teal-20: rgba(65,90,103,0.2);
+  --color-sky-30: rgba(156,199,222,0.3);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--color-off-black);
+  background: var(--color-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ANIMATIONS */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.animate-bounce-custom {
+  animation: bounce 2s infinite;
+}
+
