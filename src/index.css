@@ -3,7 +3,7 @@
 
 @theme {
   --font-sans: "Inter", Arial, sans-serif;
-  
+
   --color-black: #000000;
   --color-off-black: #2B2B2B;
   --color-dark-gray: #575757;
@@ -28,23 +28,58 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ANIMATIONS */
+/* Fade-in animation - starts visible, enhances if JS works */
 .fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  opacity: 1;
+  transform: translateY(0);
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in:not(.visible) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .fade-in {
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+}
+
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* Bounce animation */
 @keyframes bounce {
-  0%,100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(8px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 
 .animate-bounce-custom {
   animation: bounce 2s infinite;
 }
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(65, 90, 103, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-off-white);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-med-light-gray);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-teal);
+}
