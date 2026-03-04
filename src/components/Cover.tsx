@@ -4,23 +4,42 @@ import { ChevronDown } from 'lucide-react';
 export function Cover({ lang }: { lang: 'en' | 'pt' }) {
   return (
     <div id="sec-cover" className="min-h-screen bg-black text-white flex flex-col justify-between px-6 py-10 md:px-20 md:py-16 relative overflow-hidden">
-      {/* Background elements */}
+      {/* Hero truck image — right side */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[70vw] h-[70vh] opacity-[0.04]"
+        <div className="absolute top-0 right-0 w-full h-full">
+          <img
+            src={`${import.meta.env.BASE_URL}fmx-hero.png`}
+            alt=""
+            className="absolute top-1/2 right-0 -translate-y-1/2 w-[65%] md:w-[55%] h-auto object-contain opacity-40 md:opacity-50"
+            style={{ maxHeight: '90vh' }}
+          />
+          {/* Gradient overlays to blend truck into black */}
+          <div className="absolute inset-0" style={{
+            background: 'linear-gradient(to right, #000 25%, transparent 55%)'
+          }} />
+          <div className="absolute inset-0" style={{
+            background: 'linear-gradient(to top, #000 5%, transparent 40%)'
+          }} />
+          <div className="absolute inset-0" style={{
+            background: 'linear-gradient(to bottom, #000 2%, transparent 30%)'
+          }} />
+        </div>
+      </div>
+
+      {/* Subtle ambient glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[70vw] h-[70vh] opacity-[0.06]"
           style={{ background: 'radial-gradient(ellipse at top right, #9CC7DE, transparent 70%)' }} />
         <div className="absolute bottom-0 left-0 w-[50vw] h-[40vh] opacity-[0.03]"
           style={{ background: 'radial-gradient(ellipse at bottom left, #415A67, transparent 60%)' }} />
-        {/* Subtle grid */}
-        <div className="absolute inset-0 opacity-[0.02]"
-          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
       </div>
 
-      {/* Top: Logo */}
+      {/* Top: Logo — bigger */}
       <div className="relative z-10 flex items-center justify-between">
         <img
           src={`${import.meta.env.BASE_URL}nors-logo-white.png`}
           alt="NORS"
-          className="h-8 md:h-10 object-contain brightness-0 invert"
+          className="h-10 md:h-14 lg:h-16 object-contain brightness-0 invert"
         />
         <div className="text-[10px] md:text-xs font-light tracking-[3px] uppercase text-med-dark-gray">
           {lang === 'en' ? 'Annual Report' : 'Relatório Anual'}
