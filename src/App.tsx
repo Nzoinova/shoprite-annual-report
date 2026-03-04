@@ -10,10 +10,22 @@ import { History } from './components/History';
 import { YoY } from './components/YoY';
 import { Commitments } from './components/Commitments';
 import { Methodology, Footer } from './components/Footer';
+import { Onboarding } from './components/Onboarding';
+
+function getInitialTourState(): boolean {
+  try { return !window.sessionStorage.getItem('nors-tour-done'); }
+  catch { return true; }
+}
 
 export default function App() {
-  const [lang, setLang] = useState<'en' | 'pt'>('pt');
+  const [lang, setLang] = useState<'en' | 'pt'>('en');
   const [activeSection, setActiveSection] = useState(0);
+  const [showTour, setShowTour] = useState(getInitialTourState);
+
+  const completeTour = () => {
+    setShowTour(false);
+    try { window.sessionStorage.setItem('nors-tour-done', '1'); } catch {}
+  };
 
   // Fade-in observer
   useEffect(() => {
@@ -28,7 +40,6 @@ export default function App() {
       { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
 
-    // Observe after a short delay to ensure DOM is ready
     const timer = setTimeout(() => {
       document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
     }, 100);
@@ -95,6 +106,20 @@ export default function App() {
           />
         ))}
       </nav>
+
+      {/* Tour help button — bottom right */}
+      {!showTour && (
+        <button
+          onClick={() => setShowTour(true)}
+          className="fixed bottom-5 right-5 z-[997] w-10 h-10 rounded-full bg-[#415A67] text-white flex items-center justify-center shadow-lg hover:bg-[#344a56] transition-colors"
+          title={lang === 'en' ? 'Restart guide' : 'Reiniciar guia'}
+        >
+          <span className="font-bold text-sm">?</span>
+        </button>
+      )}
+
+      {/* Onboarding tour */}
+      {showTour && <Onboarding lang={lang} onComplete={completeTour} />}
 
       <Cover lang={lang} />
       <Summary lang={lang} />
