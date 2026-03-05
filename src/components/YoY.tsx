@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, TrendingDown, Minus, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { TrendingUp, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 interface Metric {
   labelEn: string;
@@ -14,8 +14,8 @@ interface Metric {
 const metrics: Metric[] = [
   { labelEn: 'Monthly Average', labelPt: 'Média Mensal', v2024: '12.8', v2025: '24.6', change: '+92%', direction: 'up', positive: true },
   { labelEn: 'Approval Rate', labelPt: 'Taxa Aprovação', v2024: '95.0%', v2025: '97.4%', change: '+2.4pp', direction: 'up', positive: true },
-  { labelEn: 'Avg Immobilization', labelPt: 'Imobilização Média', v2024: '4.2d', v2025: '3.7d', change: '-12%', direction: 'down', positive: true },
-  { labelEn: 'Same-Day Completions', labelPt: 'Concluídos Mesmo Dia', v2024: '17.0%', v2025: '20.9%', change: '+3.9pp', direction: 'up', positive: true },
+  { labelEn: 'Avg Immobilization', labelPt: 'Imobilização Média', v2024: '4.2d', v2025: '3.1d', change: '-26%', direction: 'down', positive: true },
+  { labelEn: 'Same-Day Completions', labelPt: 'Concluídos Mesmo Dia', v2024: '17.0%', v2025: '23.2%', change: '+6.2pp', direction: 'up', positive: true },
   { labelEn: 'Estimate Approval', labelPt: 'Aprovação Estimativa', v2024: '1.2d', v2025: '0.9d', change: '-25%', direction: 'down', positive: true },
 ];
 
@@ -71,8 +71,8 @@ export function YoY({ lang }: { lang: 'en' | 'pt' }) {
           </div>
           <p className="font-light text-xs text-med-light-gray">
             {lang === 'en'
-              ? 'Higher volume (+92%), faster turnaround (-12%), better approval (+2.4pp), more same-day completions (+3.9pp).'
-              : 'Mais volume (+92%), resposta mais rápida (-12%), melhor aprovação (+2.4pp), mais conclusões no dia (+3.9pp).'}
+              ? 'Higher volume (+92%), faster turnaround (-26%), better approval (+2.4pp), more same-day completions (+6.2pp).'
+              : 'Mais volume (+92%), resposta mais rápida (-26%), melhor aprovação (+2.4pp), mais conclusões no dia (+6.2pp).'}
           </p>
         </div>
       </div>
