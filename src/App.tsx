@@ -95,16 +95,35 @@ export default function App() {
 
       {/* Nav Dots */}
       <nav className="fixed right-5 top-1/2 -translate-y-1/2 z-[999] hidden md:flex flex-col gap-2.5">
-        {sections.map((id, i) => (
-          <button
-            key={id}
-            className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-150 ${
-              activeSection === i ? 'bg-teal scale-150 shadow-md' : 'bg-med-light-gray/50 hover:bg-dark-gray'
-            }`}
-            onClick={() => scrollToSection(id)}
-            aria-label={`Go to section ${i + 1}`}
-          />
-        ))}
+        {sections.map((id, i) => {
+          const labels: Record<string, [string, string]> = {
+            'sec-cover': ['Cover', 'Capa'],
+            'sec-summary': ['Summary', 'Resumo'],
+            'sec-timeline': ['Timeline', 'Cronologia'],
+            'sec-units': ['Distribution', 'Distribuição'],
+            'sec-services': ['Services', 'Serviços'],
+            'sec-top10': ['Top Vehicles', 'Top Viaturas'],
+            'sec-insights': ['Health Insights', 'Análise Saúde'],
+            'sec-history': ['Vehicle History', 'Historial'],
+            'sec-yoy': ['Year-over-Year', 'Comparação Anual'],
+            'sec-commitments': ['Commitments', 'Compromissos'],
+          };
+          const label = labels[id]?.[lang === 'en' ? 0 : 1] || '';
+          return (
+            <div key={id} className="relative group flex items-center justify-end">
+              <div className="absolute right-5 px-2.5 py-1 bg-off-black text-white text-[10px] font-semibold tracking-wide rounded-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+                {label}
+              </div>
+              <button
+                className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-150 ${
+                  activeSection === i ? 'bg-teal scale-150 shadow-md' : 'bg-med-light-gray/50 hover:bg-dark-gray'
+                }`}
+                onClick={() => scrollToSection(id)}
+                aria-label={label}
+              />
+            </div>
+          );
+        })}
       </nav>
 
       {/* Tour help button — bottom right */}
