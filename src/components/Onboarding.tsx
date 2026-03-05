@@ -12,60 +12,61 @@ interface Step {
 
 const steps: Step[] = [
   {
-    iconEl: <Globe size={24} />,
+    iconEl: <Globe size={28} />,
     titleEn: 'Language',
     titlePt: 'Idioma',
     descEn: 'Switch between English and Portuguese at any time using the EN / PT toggle in the top-right corner.',
     descPt: 'Alterne entre Inglês e Português a qualquer momento com o botão EN / PT no canto superior direito.',
   },
   {
-    iconEl: <Navigation size={24} />,
+    iconEl: <Navigation size={28} />,
     titleEn: 'Navigation',
     titlePt: 'Navegação',
-    descEn: 'Use the dots on the right side to jump directly to any section. Hover them to see section names.',
-    descPt: 'Use os pontos no lado direito para saltar directamente para qualquer secção. Passe o rato para ver os nomes.',
+    descEn: 'Use the dots on the right side to jump directly to any section. Hover to see section names.',
+    descPt: 'Use os pontos no lado direito para saltar para qualquer secção. Passe o rato para ver os nomes.',
   },
   {
-    iconEl: <BarChart3 size={24} />,
+    iconEl: <BarChart3 size={28} />,
     titleEn: 'Executive Summary',
     titlePt: 'Resumo Executivo',
-    descEn: '6 key performance indicators with animated counters: fleet size, interventions, average immobilization, same-day completion rate, and more.',
-    descPt: '6 indicadores-chave com contadores animados: dimensão da frota, intervenções, imobilização média, taxa de conclusão no dia, e mais.',
+    descEn: '6 animated KPIs at a glance: fleet size, interventions, average immobilization, same-day rate, and more.',
+    descPt: '6 indicadores animados: dimensão da frota, intervenções, imobilização média, taxa de conclusão no dia, e mais.',
     targetSection: 'sec-summary',
   },
   {
-    iconEl: <MousePointerClick size={24} />,
+    iconEl: <MousePointerClick size={28} />,
     titleEn: 'Interactive Charts',
     titlePt: 'Gráficos Interactivos',
-    descEn: 'Hover over donut charts in Distribution for detailed breakdowns. All charts show tooltips with exact values and percentages.',
-    descPt: 'Passe o rato sobre os gráficos em Distribuição para detalhes. Todos os gráficos mostram tooltips com valores exactos e percentagens.',
+    descEn: 'Hover over charts for detailed breakdowns. All visualizations show tooltips with exact values and percentages.',
+    descPt: 'Passe o rato sobre os gráficos para ver detalhes. Todas as visualizações mostram valores exactos.',
     targetSection: 'sec-units',
   },
   {
-    iconEl: <Sparkles size={24} />,
+    iconEl: <Sparkles size={28} />,
     titleEn: 'Health Insights',
     titlePt: 'Análise de Saúde',
-    descEn: 'Efficiency benchmarks per service unit, fleet age profile, high-immobilization alerts with odometer data, and preventive vs corrective maintenance ratios per vehicle.',
-    descPt: 'Benchmarks de eficiência por unidade, perfil etário da frota, alertas de alta imobilização com dados de odómetro, e rácios de manutenção preventiva vs correctiva por viatura.',
+    descEn: 'Efficiency benchmarks per unit, fleet age profile, high-immobilization alerts, and preventive vs corrective ratios.',
+    descPt: 'Benchmarks por unidade, perfil etário, alertas de imobilização, e rácios preventiva vs correctiva.',
     targetSection: 'sec-insights',
   },
   {
-    iconEl: <Search size={24} />,
+    iconEl: <Search size={28} />,
     titleEn: 'Vehicle History',
     titlePt: 'Historial de Viaturas',
-    descEn: 'Search any plate number to see its complete service history. Each entry shows service date, description, unit, and working days. Use the pagination to browse all 54 vehicles.',
-    descPt: 'Pesquise qualquer matrícula para ver o historial completo. Cada entrada mostra data, descrição, unidade e dias úteis. Use a paginação para navegar todas as 54 viaturas.',
+    descEn: 'Search any plate number for its complete service timeline. Browse all 57 vehicles with pagination.',
+    descPt: 'Pesquise qualquer matrícula para o historial completo. Navegue todas as 57 viaturas com paginação.',
     targetSection: 'sec-history',
   },
 ];
 
 export function Onboarding({ lang, onComplete }: { lang: 'en' | 'pt'; onComplete: () => void }) {
   const en = lang === 'en';
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(-1); // -1 = welcome screen
   const [visible, setVisible] = useState(false);
+  const [slideDir, setSlideDir] = useState<'right'|'left'>('right');
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 300);
+    const timer = setTimeout(() => setVisible(true), 200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -76,118 +77,166 @@ export function Onboarding({ lang, onComplete }: { lang: 'en' | 'pt'; onComplete
 
   const next = () => {
     if (step < steps.length - 1) {
+      setSlideDir('right');
       setStep(step + 1);
     } else {
       close();
     }
   };
 
-  const prev = () => { if (step > 0) setStep(step - 1); };
+  const prev = () => {
+    if (step > -1) {
+      setSlideDir('left');
+      setStep(step - 1);
+    }
+  };
 
   const goToSection = () => {
-    const s = steps[step];
-    if (s.targetSection) {
-      const el = document.getElementById(s.targetSection);
+    if (step >= 0 && steps[step].targetSection) {
+      const el = document.getElementById(steps[step].targetSection!);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  const current = steps[step];
+  const totalSteps = steps.length + 1; // +1 for welcome
+  const currentIndex = step + 1; // 0-based → welcome=0, step0=1, etc.
 
   return (
     <>
       {/* Backdrop */}
       <div
         className="fixed inset-0 z-[9998] transition-opacity duration-300"
-        style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(4px)', opacity: visible ? 1 : 0 }}
+        style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(6px)', opacity: visible ? 1 : 0 }}
         onClick={close}
       />
 
       {/* Modal */}
       <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4 pointer-events-none">
         <div
-          className="bg-white max-w-md w-full pointer-events-auto shadow-2xl overflow-hidden transition-all duration-300"
-          style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(16px)' }}
+          className="bg-white max-w-[440px] w-full pointer-events-auto overflow-hidden transition-all duration-400"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.97)',
+            boxShadow: '0 25px 60px -12px rgba(0,0,0,0.4)',
+          }}
         >
-          {/* Progress bar */}
-          <div className="h-1 bg-gray-100">
-            <div className="h-full bg-[#415A67] transition-all duration-500 ease-out" style={{ width: `${((step + 1) / steps.length) * 100}%` }} />
-          </div>
+          {/* Top accent gradient */}
+          <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #415A67 0%, #9CC7DE 100%)' }} />
 
-          {/* Header */}
-          <div className="flex items-center justify-between px-6 pt-5">
-            <div className="text-[10px] font-light tracking-[3px] uppercase text-[#415A67]">
-              {en ? 'Quick Guide' : 'Guia Rápido'} — {step + 1}/{steps.length}
-            </div>
-            <button onClick={close} className="text-gray-400 hover:text-gray-600 transition-colors p-1" aria-label="Close">
-              <X size={18} />
-            </button>
-          </div>
-
-          {/* Content */}
-          <div className="px-6 py-6">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 flex items-center justify-center bg-[#415A67]/10 text-[#415A67] flex-shrink-0 rounded-sm">
-                {current.iconEl}
+          {step === -1 ? (
+            /* ═══ WELCOME SCREEN ═══ */
+            <div className="px-8 py-10 text-center">
+              <div className="w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #415A67, #9CC7DE)' }}>
+                <span className="text-white text-2xl font-extrabold">N</span>
               </div>
-              <div>
-                <h3 className="font-extrabold text-xl tracking-tight mb-2">
-                  {en ? current.titleEn : current.titlePt}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {en ? current.descEn : current.descPt}
-                </p>
-              </div>
-            </div>
-
-            {/* "Go to section" link */}
-            {current.targetSection && (
-              <button
-                onClick={goToSection}
-                className="mt-4 ml-16 text-xs text-[#415A67] font-semibold hover:underline flex items-center gap-1"
-              >
-                {en ? 'Go to section' : 'Ir para secção'} →
-              </button>
-            )}
-          </div>
-
-          {/* Step dots */}
-          <div className="flex justify-center gap-1.5 pb-2">
-            {steps.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setStep(i)}
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  i === step ? 'bg-[#415A67] scale-125' : i < step ? 'bg-[#9CC7DE]' : 'bg-gray-200'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Footer */}
-          <div className="flex items-center justify-between px-6 pb-5">
-            <button
-              onClick={close}
-              className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              {en ? 'Skip guide' : 'Saltar guia'}
-            </button>
-            <div className="flex gap-2">
-              {step > 0 && (
-                <button onClick={prev} className="flex items-center gap-1 px-4 py-2 border border-gray-200 text-sm hover:bg-gray-50 transition-colors">
-                  <ChevronLeft size={14} />
-                  {en ? 'Back' : 'Anterior'}
+              <h2 className="font-extrabold text-2xl tracking-tight mb-2">
+                {en ? 'Welcome to Your Report' : 'Bem-vindo ao Relatório'}
+              </h2>
+              <p className="text-sm text-gray-500 leading-relaxed max-w-xs mx-auto mb-8">
+                {en
+                  ? 'A quick 6-step guide to help you navigate through your annual service report.'
+                  : 'Um guia rápido de 6 passos para navegar pelo relatório anual de serviço.'}
+              </p>
+              <div className="flex justify-center gap-3">
+                <button
+                  onClick={close}
+                  className="px-5 py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  {en ? 'Skip' : 'Saltar'}
                 </button>
-              )}
-              <button onClick={next} className="flex items-center gap-1 px-5 py-2 bg-[#415A67] text-white text-sm font-semibold hover:bg-[#344a56] transition-colors">
-                {step < steps.length - 1
-                  ? (en ? 'Next' : 'Seguinte')
-                  : (en ? 'Start Exploring' : 'Começar a Explorar')
-                }
-                <ChevronRight size={14} />
-              </button>
+                <button
+                  onClick={next}
+                  className="px-7 py-2.5 text-sm font-semibold text-white transition-all hover:shadow-lg flex items-center gap-2"
+                  style={{ background: 'linear-gradient(135deg, #415A67, #4a6d7d)' }}
+                >
+                  {en ? "Let's go" : 'Começar'}
+                  <ChevronRight size={16} />
+                </button>
+              </div>
             </div>
-          </div>
+          ) : (
+            /* ═══ STEP CONTENT ═══ */
+            <>
+              {/* Header */}
+              <div className="flex items-center justify-between px-7 pt-5 pb-0">
+                <div className="flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-[#415A67] text-white text-[10px] font-bold flex items-center justify-center">
+                    {step + 1}
+                  </span>
+                  <span className="text-[10px] font-light tracking-[2px] uppercase text-gray-400">
+                    {en ? 'of' : 'de'} {steps.length}
+                  </span>
+                </div>
+                <button onClick={close} className="text-gray-300 hover:text-gray-500 transition-colors p-1" aria-label="Close">
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Content */}
+              <div className="px-7 py-6" key={step}>
+                <div className="flex gap-5">
+                  <div className="w-14 h-14 flex-shrink-0 rounded-xl flex items-center justify-center text-white" style={{ background: 'linear-gradient(135deg, #415A67, #5a7a8a)' }}>
+                    {steps[step].iconEl}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-extrabold text-xl tracking-tight mb-1.5">
+                      {en ? steps[step].titleEn : steps[step].titlePt}
+                    </h3>
+                    <p className="text-[13px] text-gray-500 leading-relaxed">
+                      {en ? steps[step].descEn : steps[step].descPt}
+                    </p>
+                    {steps[step].targetSection && (
+                      <button
+                        onClick={goToSection}
+                        className="mt-3 text-xs font-semibold hover:underline flex items-center gap-1 transition-colors"
+                        style={{ color: '#415A67' }}
+                      >
+                        {en ? 'Jump to section' : 'Ir para secção'} →
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Progress dots */}
+              <div className="flex justify-center gap-1.5 pb-3">
+                {steps.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setSlideDir(i > step ? 'right' : 'left'); setStep(i); }}
+                    className="transition-all duration-300 rounded-full"
+                    style={{
+                      width: i === step ? 20 : 6,
+                      height: 6,
+                      background: i === step ? '#415A67' : i < step ? '#9CC7DE' : '#e5e7eb',
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-between px-7 pb-5">
+                <button
+                  onClick={prev}
+                  className="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <ChevronLeft size={14} />
+                  {en ? 'Back' : 'Voltar'}
+                </button>
+                <button
+                  onClick={next}
+                  className="flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white transition-all hover:shadow-lg"
+                  style={{ background: 'linear-gradient(135deg, #415A67, #4a6d7d)' }}
+                >
+                  {step < steps.length - 1
+                    ? (en ? 'Next' : 'Seguinte')
+                    : (en ? 'Start Exploring' : 'Explorar')
+                  }
+                  <ChevronRight size={14} />
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
