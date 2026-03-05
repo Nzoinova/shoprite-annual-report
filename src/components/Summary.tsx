@@ -13,9 +13,9 @@ const kpis: KPI[] = [
   { value: '345', numericValue: 345, suffix: '', labelEn: 'Interventions', labelPt: 'Intervenções', detail: 'Jan 25 – Feb 26' },
   { value: '57', numericValue: 57, suffix: '', labelEn: 'Vehicles Serviced', labelPt: 'Viaturas Atendidas', detail: 'Unique fleet units' },
   { value: '3', numericValue: 3, suffix: '', labelEn: 'Service Units', labelPt: 'Unidades de Serviço', detail: 'Icolo · Lobito · Lubango' },
-  { value: '2.8', numericValue: 2.8, suffix: 'd', labelEn: 'Avg. Working Days', labelPt: 'Média Dias Úteis', detail: '954 total (excl. weekends)' },
+  { value: '2.4', numericValue: 2.4, suffix: 'd', labelEn: 'Avg. Working Days', labelPt: 'Média Dias Úteis', detail: '819 total (excl. weekends)' },
   { value: '6.1', numericValue: 6.1, suffix: '', labelEn: 'Avg. Visits/Vehicle', labelPt: 'Média Visitas/Viatura', detail: '345 ÷ 57' },
-  { value: '20.9', numericValue: 20.9, suffix: '%', labelEn: 'Same-Day', labelPt: 'Mesmo Dia', detail: '72 / 345' },
+  { value: '23.2', numericValue: 23.2, suffix: '%', labelEn: 'Same-Day', labelPt: 'Mesmo Dia', detail: '80 / 345' },
 ];
 
 function AnimatedNumber({ target, suffix, duration = 1500 }: { target: number; suffix: string; duration?: number }) {
