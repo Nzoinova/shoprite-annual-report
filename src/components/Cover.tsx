@@ -72,18 +72,20 @@ export function Cover({ lang }: { lang: 'en' | 'pt' }) {
         </div>
       </div>
 
-      {/* Bottom: Tagline + scroll indicator */}
-      <div className="relative z-10 flex items-end justify-between">
+      {/* Bottom: Tagline */}
+      <div className="relative z-10">
         <div className="text-med-dark-gray">
           <div className="font-extrabold text-lg md:text-xl tracking-tight">Making it work.</div>
           <div className="font-light text-xs tracking-wide mt-0.5">Fazer acontecer.</div>
         </div>
-        <div className="flex flex-col items-center text-med-dark-gray">
-          <span className="text-[10px] uppercase tracking-[2px] mb-1">
-            {lang === 'en' ? 'Scroll' : 'Deslize'}
-          </span>
-          <ChevronDown size={18} className="animate-bounce" />
-        </div>
+      </div>
+
+      {/* Centered scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center text-med-light-gray cursor-pointer group" onClick={() => document.getElementById('sec-summary')?.scrollIntoView({ behavior: 'smooth' })}>
+        <span className="text-[10px] uppercase tracking-[3px] mb-2 group-hover:text-white transition-colors">
+          {lang === 'en' ? 'Scroll' : 'Deslize'}
+        </span>
+        <ChevronDown size={28} className="animate-bounce group-hover:text-white transition-colors" />
       </div>
     </div>
   );
